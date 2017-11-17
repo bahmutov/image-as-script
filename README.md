@@ -6,3 +6,5 @@ Then one can run [character recognition library](https://github.com/antimatter15
 to get the JavaScript out of the image and execute it. Seems reasonable.
 
 ![Recognized JS code](recognized-code.png)
+
+This repo: [https://github.com/bahmutov/image-as-script](https://github.com/bahmutov/image-as-script)
