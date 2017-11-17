@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image As Script</title>
+</head>
+<body>
+  <strong>What takes longer to send from the server: images or JavaScript?</strong>
+  <p><h1>JavaScript in the image</h1></p>
+  <p>Below is screenshot of some JavaScript</p>
+  <img src="js.png" id="code">
+  <p>Now this browser will run optical character recognition and
+  then will execute the recognized code</p>
+  <p>Uses <a href="https://github.com/antimatter15/ocrad.js">ocrad.js</a> library.</p>
+  <script src="ocrad.js"></script>
+  <p><strong>Recognized code</strong>
+    <pre id="recognized" />
+  </p>
+  <script>
+    function getImageData(img) {
+      // Create an empty canvas element
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Copy the image contents to the canvas
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      return ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+
+    const img = document.getElementById('code')
+    const image = getImageData(img)
+    const code = OCRAD(image)
+    console.log('got code')
+    console.log(code)
+    document.getElementById('recognized').innerText = code
+    eval(code)
+  </script>
+</body>
+</html>
